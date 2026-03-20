@@ -1,0 +1,27 @@
+# =========================================================================
+# Rule Name: LudyServer & Local Network Bypass Rules
+# Target App: LudyServer - File Transfer (App Store ID: 6759769077)
+# Architecture: Comprehensive LAN & Multicast Bypass for WebDAV/SFTP/HTTP
+# Environment: IPv4 & IPv6 Dual-Stack Support
+# Document Version: v1.0.0
+# =========================================================================
+
+# 确保开发者官网与局域网内的 Apple Bonjour 设备发现机制正常运行。
+DOMAIN-SUFFIX,local
+DOMAIN-SUFFIX,ludy.app
+
+# 豁免多播与广播空间，防止应用底层服务通告及路由发现数据包被错误拦截。
+IP-CIDR,224.0.0.0/4,no-resolve
+IP-CIDR,255.255.255.255/32,no-resolve
+
+# 全面覆盖各类物理路由器架构、虚拟交换机及光猫所分配的私有 IP 范围。
+IP-CIDR,192.168.0.0/16,no-resolve
+IP-CIDR,10.0.0.0/8,no-resolve
+IP-CIDR,172.16.0.0/12,no-resolve
+IP-CIDR,169.254.0.0/16,no-resolve
+IP-CIDR,127.0.0.0/8,no-resolve
+
+# 适配下一代网络协议，确保处于纯 IPv6 或双栈运行环境中的局域网直连能力。
+IP-CIDR6,fe80::/10,no-resolve
+IP-CIDR6,fc00::/7,no-resolve
+IP-CIDR6,::1/128,no-resolve
